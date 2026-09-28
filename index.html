@@ -3,9 +3,191 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Seen im Klimawandel</title>
+    <meta
+      name="description"
+      content="Wassertemperatur, Tiefe und Klimawandel: 14 Seen in Salzburg und Oberösterreich im Vergleich."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <title>Seen im Klimawandel – Salzburg &amp; Oberösterreich</title>
   </head>
   <body>
+    <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
+    <header class="seitenkopf">
+      <p class="seitenkopf__label">Salzburg &amp; Oberösterreich</p>
+      <h1>Seen im Klimawandel</h1>
+      <p>
+        Baden oder Eislaufen? Wie warm unsere Seen sind, hängt vom Wetter ab – und zunehmend vom Klima. Diese Seite
+        vergleicht 14 Seen im Salzburger Seenland und im Salzkammergut.
+      </p>
+    </header>
+
+    <nav aria-label="Hauptnavigation" class="navigation">
+      <ul>
+        <li><a href="#seen">Seen vergleichen</a></li>
+        <li><a href="#kennzahlen">Kennzahlen</a></li>
+        <li><a href="#klima">Seen &amp; Klima</a></li>
+        <li><a href="#quellen">Quellen</a></li>
+      </ul>
+    </nav>
+
+    <main id="inhalt">
+      <section id="seen" aria-labelledby="seen-titel">
+        <h2 id="seen-titel">Seen vergleichen</h2>
+        <p>
+          Wassertemperaturen vom <time id="messzeitpunkt" datetime="">…</time> (Momentaufnahme). Bei mehreren
+          Messstellen wird der Mittelwert angezeigt.
+        </p>
+
+        <form id="filter" class="filter" aria-label="Seen filtern und sortieren">
+          <fieldset>
+            <legend>Filter</legend>
+
+            <p class="filter__feld">
+              <label for="bundesland">Bundesland</label>
+              <select id="bundesland" name="bundesland">
+                <option value="alle">Alle</option>
+                <option value="Salzburg">Salzburg</option>
+                <option value="Oberösterreich">Oberösterreich</option>
+              </select>
+            </p>
+
+            <p class="filter__feld">
+              <label for="tiefe">Tiefe</label>
+              <select id="tiefe" name="tiefe">
+                <option value="alle">Alle</option>
+                <option value="flach">flach (unter 15 m)</option>
+                <option value="mittel">mittel (15–70 m)</option>
+                <option value="tief">tief (ab 70 m)</option>
+              </select>
+            </p>
+
+            <p class="filter__feld">
+              <label for="mindest-temperatur">Baden ab (Wassertemperatur)</label>
+              <span class="filter__regler">
+                <input
+                  id="mindest-temperatur"
+                  name="mindestTemperatur"
+                  type="range"
+                  min="0"
+                  max="30"
+                  step="0.5"
+                  value="0"
+                  disabled
+                />
+                <output id="mindest-temperatur-wert" for="mindest-temperatur">0 °C</output>
+                <label class="filter__option">
+                  <input id="alle-temperaturen" name="alleTemperaturen" type="checkbox" checked />
+                  alle<span class="unsichtbar"> Temperaturen</span>
+                </label>
+              </span>
+            </p>
+
+            <p class="filter__feld">
+              <label for="sortierung">Sortieren nach</label>
+              <select id="sortierung" name="sortierung">
+                <option value="temperatur">Wassertemperatur</option>
+                <option value="name">Name</option>
+                <option value="tiefe">Tiefe</option>
+                <option value="flaeche">Fläche</option>
+              </select>
+            </p>
+
+            <button type="reset">Zurücksetzen</button>
+          </fieldset>
+        </form>
+
+        <p><output id="trefferanzahl" aria-live="polite"></output></p>
+
+        <ul id="seenliste" class="seenliste"></ul>
+      </section>
+
+      <section id="kennzahlen" aria-labelledby="kennzahlen-titel">
+        <h2 id="kennzahlen-titel">Kennzahlen der Auswahl</h2>
+        <p>Die Werte beziehen sich auf die aktuell gefilterten Seen.</p>
+        <dl class="kennzahlen">
+          <dt>Seen</dt>
+          <dd id="stat-anzahl">–</dd>
+          <dt>Ø Wassertemperatur</dt>
+          <dd id="stat-durchschnitt">–</dd>
+          <dt>Wärmster See</dt>
+          <dd id="stat-waermster">–</dd>
+          <dt>Gesamtfläche</dt>
+          <dd id="stat-flaeche">–</dd>
+        </dl>
+      </section>
+
+      <section id="klima" aria-labelledby="klima-titel">
+        <h2 id="klima-titel">Seen &amp; Klima</h2>
+
+        <article aria-labelledby="sommer-titel">
+          <h3 id="sommer-titel">Sommer: Warum flache Seen schneller warm werden</h3>
+          <p>
+            Ein kleiner, flacher See wie der Holzöstersee hat wenig Wasservolumen und erwärmt sich im Sommer rasch. Tiefe
+            Seen wie Attersee oder Traunsee speichern dagegen große Wassermengen und reagieren träger auf Hitzeperioden.
+          </p>
+        </article>
+
+        <article aria-labelledby="winter-titel">
+          <h3 id="winter-titel">Winter: Warum flache Seen eher zufrieren</h3>
+          <p>
+            Umgekehrt kühlen flache Seen im Winter schneller aus. Tiefe Seen geben lange gespeicherte Wärme ab und frieren
+            deshalb selten vollständig zu. Mildere Winter verringern die Zahl der Tage mit Eisbedeckung.
+          </p>
+        </article>
+
+        <figure>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Kategorie</th>
+                <th scope="col">Max. Tiefe</th>
+                <th scope="col">Beispiele</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">flach</th>
+                <td>unter 15 m</td>
+                <td>Holzöstersee, Almsee, Grabensee</td>
+              </tr>
+              <tr>
+                <th scope="row">mittel</th>
+                <td>15–70 m</td>
+                <td>Wallersee, Mattsee, Mondsee</td>
+              </tr>
+              <tr>
+                <th scope="row">tief</th>
+                <td>ab 70 m</td>
+                <td>Wolfgangsee, Hallstätter See, Attersee, Traunsee</td>
+              </tr>
+            </tbody>
+          </table>
+          <figcaption>Einteilung der Seen nach maximaler Tiefe, wie sie auf dieser Seite verwendet wird.</figcaption>
+        </figure>
+
+        <aside class="hinweis" aria-labelledby="hinweis-titel">
+          <h3 id="hinweis-titel">Sicherheitshinweis</h3>
+          <p>
+            Diese Seite gibt keine Auskunft darüber, ob Eis tragfähig ist. Betreten Sie Eisflächen nur, wenn sie von der
+            Gemeinde offiziell freigegeben wurden.
+          </p>
+        </aside>
+      </section>
+    </main>
+
+    <footer id="quellen" class="seitenfuss">
+      <h2>Quellen</h2>
+      <ul>
+        <li>
+          Wassertemperaturen: <a href="https://www.salzburg.gv.at/wasser/hydro/">Land Salzburg, Hydris Online</a> und
+          <a href="https://hydro.ooe.gv.at/">Land Oberösterreich, Hydrographischer Dienst</a>
+        </li>
+        <li>Fläche, Tiefe und Seehöhe: deutschsprachige Wikipedia, abgerufen am 25.09.2026</li>
+      </ul>
+      <p><small>ESA 1 · Frontend Development (SED502) · Ferdinand Porsche FernFH</small></p>
+    </footer>
+
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
