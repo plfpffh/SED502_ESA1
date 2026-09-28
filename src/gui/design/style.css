@@ -227,6 +227,52 @@ button:hover {
   padding: 0;
 }
 
+.see {
+  height: 100%;
+  padding: var(--abstand);
+  border: 1px solid var(--farbe-rand);
+  border-radius: var(--radius);
+  background: var(--farbe-flaeche);
+}
+
+.see h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.see__temperatur {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--farbe-akzent);
+}
+
+.see__fakten {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.15rem 0.75rem;
+  margin: 0 0 0.75rem;
+}
+
+.see__fakten dt {
+  color: var(--farbe-text-leise);
+}
+
+.see__fakten dd {
+  margin: 0;
+}
+
+.see details ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 0;
+}
+
+.see summary {
+  cursor: pointer;
+  color: var(--farbe-akzent);
+  font-weight: 600;
+}
+
 /*
  * Kennzahlen ohne div: Jedes dt/dd-Paar bildet eine Kachel.
  * dt ist der obere, dd der untere Teil der Kachel. Ab zwei Spalten
